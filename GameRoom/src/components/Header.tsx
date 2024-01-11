@@ -1,22 +1,31 @@
+import { HomeTwoTone, EditTwoTone, CheckCircleTwoTone } from '@ant-design/icons';
+import { Menu } from 'antd';
+import { useState } from 'react';
+import { Outlet, Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
-import '../css/home.css'
+
 const Header = () => {
-   
-    return (
-     
-      <nav className='topbar'>
-          <li>
-            <Link to='/'>Home</Link>           
-          </li>
-          <li>
-            <Link to='/register'>Register</Link>               
-          </li>
-          <li>
-            <Link to='/login'>Login</Link>      
-          </li>
-      </nav> 
-     
-    )
+  const [current, setCurrent] = useState('h');
+  const onClick = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
   };
-  export default Header;
+  return (
+    <>
+     <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal">
+      <Menu.Item key="h" icon= {<HomeTwoTone />}>
+       <Link to="/">Inicial</Link>
+      </Menu.Item>
+      <Menu.Item key="r" icon= {<EditTwoTone />}>
+        <Link to="/register">Cadastrar</Link>
+      </Menu.Item>
+      <Menu.Item key="l" icon= {<CheckCircleTwoTone />} >
+        <Link to="/login">Entrar</Link>
+      </Menu.Item>
+     </Menu>
+     <Outlet/>
+    </>
+   
+  )
+};
+export default Header;
