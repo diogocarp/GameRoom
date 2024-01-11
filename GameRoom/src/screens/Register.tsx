@@ -8,7 +8,9 @@ const Register = () => {
   };
 
   return (
-    <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
+    <div style={{ minHeight: '91vh',justifyContent: 'center', alignItems: 'middle' }}>
+     
+    <Row justify="center" align="middle" style = {{ minHeight: '100%', paddingTop:'30px'} }>
       <Col xs={20} sm={16} md={12} lg={8}>
         <Card title="Cadastro" style={{ textAlign: 'center' }}>
           <Form
@@ -81,6 +83,7 @@ const Register = () => {
         </Card>
       </Col>
     </Row>
+    </div>
   );
 };
 
