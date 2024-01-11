@@ -1,0 +1,15 @@
+.topbar{
+
+    display: flex;
+    text-decoration: none;
+    gap: 1em;
+    height: 2em;
+
+}
+
+.topbar li{
+
+    display: flex;
+    text-decoration: none;
+
+}
