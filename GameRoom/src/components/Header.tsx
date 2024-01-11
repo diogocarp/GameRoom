@@ -17,9 +17,9 @@ const Header = () => {
        <Link to="/">Inicial</Link>
       </Menu.Item>
       <Menu.Item key="r" icon= {<EditTwoTone />}>
-        <Link to="/register">Cadastrar</Link>
+        <Link to="/register">Cadastrar cliente</Link>
       </Menu.Item>
-      <Menu.Item key="l" icon= {<CheckCircleTwoTone />} >
+      <Menu.Item key="l" icon= {<CheckCircleTwoTone />} style={{ marginLeft: 'auto'}} > 
         <Link to="/login">Entrar</Link>
       </Menu.Item>
      </Menu>
