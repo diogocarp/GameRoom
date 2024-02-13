@@ -4,9 +4,11 @@ import Header from '../components/Header';
 import CFooter from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { Api } from '../api/Api';
+import { Cart } from '../components/Cart'; // Importe o componente de carrinho corretamente
 
 const Store = () => {
   const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     Api.get('https://fakestoreapi.com/products')
@@ -14,15 +16,20 @@ const Store = () => {
       .catch(err => alert('Ocorreu um erro ao carregar os itens! ' + err));
   }, []); 
 
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
   return (
     <>
       <Header />
+      <Cart cartItems={cartItems} setCartItems={setCartItems}/>
       <div style={{ padding: '20px' }}>
-        <h1 style={{ color: 'white' }}>Loja E-commerce</h1>
+        <h1 style={{ color: 'white' }}>Loja E-commerce</h1> 
         <Row gutter={[16, 16]}>
-          {products && products.map((product) => (
-            <Col key={product.id} xs={24} sm={12} md={8} lg={6}> {/* Ajuste as colunas com base no tamanho da tela */}
-              <Product product={product} />
+          {products.map((product) => (
+            <Col key={product.id} xs={24} sm={12} md={8} lg={6}>
+              <Product product={product} onAddToCart={addToCart} /> {/* Passar a função addToCart como prop */}
             </Col>
           ))}
         </Row>
