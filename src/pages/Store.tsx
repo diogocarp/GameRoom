@@ -4,9 +4,10 @@ import Header from '../components/Header';
 import CFooter from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { Api } from '../api/Api';
-import { Cart } from '../components/Cart'; // Importe o componente de carrinho corretamente
+import { Cart } from '../components/Cart'; 
 
 const Store = () => {
+  
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -29,7 +30,7 @@ const Store = () => {
         <Row gutter={[16, 16]}>
           {products.map((product) => (
             <Col key={product.id} xs={24} sm={12} md={8} lg={6}>
-              <Product product={product} onAddToCart={addToCart} /> {/* Passar a função addToCart como prop */}
+              <Product product={product} onAddToCart={addToCart} /> 
             </Col>
           ))}
         </Row>

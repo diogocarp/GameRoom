@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Drawer, Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 interface Item {
   id: number;
@@ -10,20 +11,11 @@ interface Item {
 
 interface CartProps {
   cartItems: Item[];
-  setCartItems: React.Dispatch<React.SetStateAction<Item[]>>
-  
+  setCartItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }
 
 export function Cart({ cartItems, setCartItems }: CartProps) {
-    const [visible, setVisible] = useState(false);
-  
-    const removeFromCart = (itemToRemove: Item) => {
-        const updatedCartItems = cartItems.filter((item) => item.id !== itemToRemove.id);
-        console.log(itemToRemove)
-        setCartItems(updatedCartItems);
-        console.log(updatedCartItems)
-      };
-      
+  const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
     setVisible(true);
@@ -36,6 +28,9 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
   const getTotal = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
+
+  const itensAmount = cartItems.reduce((total, item) => total + item.price, 0);
+
 
   return (
     <div>
@@ -55,14 +50,13 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
             <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', marginRight: '10px' }} /><br/>
             <span><b>{item.title}</b></span><br/>
             <span style={{ marginLeft: '10px',  marginRight: '10px', }}>${item.price}</span>
-            <Button type="primary" onClick={() => removeFromCart(item)}>Remover</Button>
           </div>
         ))}
         <p>Total: ${getTotal()}</p>
-        
-        <Button type="primary" style={{ marginLeft: '10px' }}>Ir para pagamento</Button>
+        <Link to="/payment" state={{ cartItems, itensAmount }}>
+          <Button type="primary" style={{ marginLeft: '10px' }}>Ir para pagamento</Button>
+        </Link>
       </Drawer>
-      
     </div>
   );
 }

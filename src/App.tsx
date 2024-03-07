@@ -1,9 +1,13 @@
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './screens/Home';
-import Login from './screens/Login';
-import Register from './screens/Register';
-import Store from './screens/Store';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Store from './pages/Store';
+import Payment from './pages/Payment';
+
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +18,7 @@ const router = createBrowserRouter(
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/store" element={<Store />} />
+    <Route path="/payment" element={<Payment />} />
     </>
   )
 )

@@ -7,7 +7,7 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const onFinish = (values: any) => {
+    const onFinish = (values) => {
       console.log('Received values:', values);
       navigate('/home')
     };
