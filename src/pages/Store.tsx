@@ -12,7 +12,7 @@ const Store = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    Api.get('https://fakestoreapi.com/products')
+    Api.get('https://fakestoreapi.com/products/')
       .then(res => setProducts(res.data))
       .catch(err => alert('Ocorreu um erro ao carregar os itens! ' + err));
   }, []); 

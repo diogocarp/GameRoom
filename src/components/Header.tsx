@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" style={{ height: '60px', fontSize: '20px', marginTop:'15px' }}>
+      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" style={{ height: '60px', fontSize: '20px', padding:'10px 0 10px 0' }}>
         <Menu.Item key="h" icon={<HomeOutlined style={{ fontSize: '24px' }} />}>
           <Link to="/home">Inicial</Link>
         </Menu.Item>

@@ -51,7 +51,7 @@ const Home = () => {
           <Paragraph style={{color: 'white'}}>
             Inscriva-se agora para aproveitar os benefícios exclusivos!
           </Paragraph>
-          <Link to="/register">
+          <Link to="/store">
             <Button type="primary">Ver Produtos!</Button>
           </Link>
         </Col>

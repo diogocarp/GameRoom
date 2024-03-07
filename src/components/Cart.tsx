@@ -29,8 +29,12 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
 
-  const itensAmount = cartItems.reduce((total, item) => total + item.price, 0);
+  const handleRemoveItem = (itemToRemove: Item) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemToRemove.id);
+    setCartItems(updatedCartItems);
+  };
 
+  const itensAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   return (
     <div>
@@ -46,14 +50,17 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
         width={300}
       >
         {cartItems.map((item) => (
-          <div key={item.id} style={{ marginBottom: '20px' }}>
-            <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', marginRight: '10px' }} /><br/>
-            <span><b>{item.title}</b></span><br/>
-            <span style={{ marginLeft: '10px',  marginRight: '10px', }}>${item.price}</span>
+          <div key={item.id} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+            <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+            <div>
+              <span><b>{item.title}</b></span><br/>
+              <span style={{ marginLeft: '10px', marginRight: '10px', }}>${item.price}</span>
+              <Button type="primary" onClick={() => handleRemoveItem(item)} style={{ marginLeft: '10px' }}>Remover</Button>
+            </div>
           </div>
         ))}
         <p>Total: ${getTotal()}</p>
-        <Link to="/payment" state={{ cartItems, itensAmount }}>
+        <Link to="/checkout" state={{ cartItems, itensAmount }}>
           <Button type="primary" style={{ marginLeft: '10px' }}>Ir para pagamento</Button>
         </Link>
       </Drawer>
