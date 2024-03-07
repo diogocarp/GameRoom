@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -57,32 +57,33 @@ export default function Checkout() {
 const location = useLocation();
 const { cartItems, itensAmount } = location.state;
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const [address, setAddress] = useState({});
+const [payment, setPayment] = useState({});
+const [activeStep, setActiveStep] = useState(0);
 
-function getStepContent(step) {
+function getStepContent() {
 
-  switch (step) {
-    case 0:
-      return <Address />;
-    case 1:
-      return <Payment />;
-    case 2:
-      return <Review cartItens={cartItems} itensAmount={itensAmount} />;
-    default:
-      throw new Error('Unknown step');
-  }
+    const handleAddressNext = (address) => {
+        setAddress(address);
+        setActiveStep(1);
+      };
+    
+      const handlePaymentNext = (payment) => {
+        setPayment(payment);
+        setActiveStep(2);
+      };
+
+    return (
+        <>
+          {activeStep === 0 && <Address onNext={handleAddressNext} />}
+          {activeStep === 1 && <Payment address={address} onNext={handlePaymentNext} />}
+          {activeStep === 2 && <Review address={address} payment={payment} cartItens={cartItems} itensAmount={itensAmount}/>}
+        </>
+        )
 }
 
     
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
 
   return (
    
@@ -101,36 +102,7 @@ function getStepContent(step) {
             ))}
           </Stepper>
           <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
-                </div>
-              </React.Fragment>
-            )}
+          {getStepContent()}
           </React.Fragment>
         </Paper>
       </main>
