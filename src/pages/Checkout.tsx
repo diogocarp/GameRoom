@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Address from './Address';
 import Review from './Review';
@@ -57,14 +56,14 @@ export default function Checkout() {
 const location = useLocation();
 const { cartItems, itensAmount } = location.state;
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
-const [address, setAddress] = useState({});
+const [cep, setCep] = useState({});
 const [payment, setPayment] = useState({});
 const [activeStep, setActiveStep] = useState(0);
 
 function getStepContent() {
 
-    const handleAddressNext = (address) => {
-        setAddress(address);
+    const handleCepNext = (cep) => {
+        setCep(cep);
         setActiveStep(1);
       };
     
@@ -75,9 +74,9 @@ function getStepContent() {
 
     return (
         <>
-          {activeStep === 0 && <Address onNext={handleAddressNext} />}
-          {activeStep === 1 && <Payment address={address} onNext={handlePaymentNext} />}
-          {activeStep === 2 && <Review address={address} payment={payment} cartItens={cartItems} itensAmount={itensAmount}/>}
+          {activeStep === 0 && <Address onNext={handleCepNext} />}
+          {activeStep === 1 && <Payment cep={cep} onNext={handlePaymentNext} />}
+          {activeStep === 2 && <Review cep={cep} payment={payment} cartItens={cartItems} itensAmount={itensAmount}/>}
         </>
         )
 }
