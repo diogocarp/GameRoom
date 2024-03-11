@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 interface Item {
   id: number;
-  title: string;
-  price: number;
-  image: string;
+  name: string;
+  value: number;
+  imageURL: string;
 }
 
 interface CartProps {
@@ -26,7 +26,7 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
   };
 
   const getTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price, 0);
+    return cartItems.reduce((total, item) => total + item.value, 0);
   };
 
   const handleRemoveItem = (itemToRemove: Item) => {
@@ -34,7 +34,7 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
     setCartItems(updatedCartItems);
   };
 
-  const itensAmount = cartItems.reduce((total, item) => total + item.price, 0);
+  const itensAmount = cartItems.reduce((total, item) => total + item.value, 0);
 
   return (
     <div>
@@ -51,10 +51,10 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
       >
         {cartItems.map((item) => (
           <div key={item.id} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-            <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+            <img src={item.imageURL} alt={item.name} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
             <div>
-              <span><b>{item.title}</b></span><br/>
-              <span style={{ marginLeft: '10px', marginRight: '10px', }}>${item.price}</span>
+              <span><b>{item.name}</b></span><br/>
+              <span style={{ marginLeft: '10px', marginRight: '10px', }}>${item.value}</span>
               <Button type="primary" onClick={() => handleRemoveItem(item)} style={{ marginLeft: '10px' }}>Remover</Button>
             </div>
           </div>

@@ -1,13 +1,54 @@
 import { Form, Input, Button, Checkbox, Row, Col, Card } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined, EyeOutlined, EyeFilled } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const onFinish = (values) => {
-        console.log('Received values:', values);
-        navigate('/home');
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    });
+
+    const [visiblePass, setVisiblePass] = useState(true);
+
+    const typePass = visiblePass ? 'password' : 'text';
+
+    const togglePasswordVisibility = () => {
+        setVisiblePass(!visiblePass);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const onFinish = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/users/${user.email}`);
+            const userData = response.data;
+            const emailResp = userData.email;
+            const passwordResp = userData.password;
+            if(emailResp !== user.email){
+                alert('Email incorreto!')
+                return
+            }
+            if(passwordResp !== user.password){
+                alert('Senha incorreta!')
+                return
+            }
+            alert('Login feito com sucesso!');
+            localStorage.setItem('userData', JSON.stringify(userData))
+            navigate('/home');
+        } catch (error) {
+            console.log(error);
+            alert('Erro ao fazer login. Verifique suas credenciais e tente novamente.');
+        }
     };
 
     return (
@@ -23,22 +64,36 @@ const Login = () => {
                         onFinish={onFinish}
                     >
                         <Form.Item
-                            name="username"
-                            rules={[{ required: true, message: 'Por favor, digite seu usuário!' }]}
+                            name="email"
+                            rules={[{ required: true, message: 'Por favor, digite seu email!' }]}
                         >
                             <Input
-                                prefix={<UserOutlined className="site-form-item-icon" />}
-                                placeholder="Usuário"
+                                prefix={<MailOutlined className="site-form-item-icon" />}
+                                placeholder="E-mail"
+                                name="email"
+                                value={user.email}
+                                onChange={handleChange}
                             />
                         </Form.Item>
                         <Form.Item
                             name="password"
-                            rules={[{ required: true, message: 'Por favor, digite sua senha!' }]}
+                            rules={[
+                                { required: true, message: 'Por favor, digite sua senha!' }
+                            ]}
                         >
                             <Input
-                                prefix={<LockOutlined className="site-form-item-icon" />}
-                                type="password"
+                                prefix={<LockOutlined />}
+                                type={typePass}
                                 placeholder="Senha"
+                                name="password"
+                                value={user.password}
+                                onChange={handleChange}
+                                suffix={
+                                    visiblePass ?
+                                        <EyeOutlined onClick={togglePasswordVisibility} />
+                                        :
+                                        <EyeFilled onClick={togglePasswordVisibility} />
+                                }
                             />
                         </Form.Item>
                         <Form.Item>
@@ -54,7 +109,7 @@ const Login = () => {
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
                                 Entrar
                             </Button>
-                            <p style={{ textAlign: 'center', margin: '10px 0' }}>Ou <a href="/">registre-se agora!</a></p>
+                            <p style={{ textAlign: 'center', margin: '10px 0' }}>Ou <a href="/register">registre-se agora!</a></p>
                         </Form.Item>
                     </Form>
                 </Card>

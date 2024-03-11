@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { Button, Spin, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -27,12 +28,15 @@ export default function Review({ cartItens, itensAmount, cep, payment }) {
     const generateOrder = Math.floor(Math.random() * 1000000)
     const [paymentSuccess, setPaymentSuccess] = useState(true);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
 
     const handlePaymentSuccess = () => {
         setLoading(true)
         setTimeout(() => {
           setLoading(false)
-            setPaymentSuccess(false);            
+            setPaymentSuccess(false);
+            setTimeout(() => {navigate('/home')},3000)            
         }, 3000);
     };
 
@@ -46,9 +50,9 @@ export default function Review({ cartItens, itensAmount, cep, payment }) {
                     <List disablePadding>
                         {cartItens.map((item) => (
                             <ListItem className={classes.listItem} key={item.id}>
-                                <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
-                                <ListItemText primary={item.title} secondary={item.description} />
-                                <Typography variant="body2">{item.price}</Typography>
+                                <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+                                <ListItemText primary={item.name} secondary={item.description} />
+                                <Typography variant="body2">{item.value}</Typography>
                             </ListItem>
                         ))}
                         <ListItem className={classes.listItem}>

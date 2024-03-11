@@ -7,9 +7,9 @@ const Product = ({ product, onAddToCart }) => {
     <Card
       hoverable
       style={{ width: '100%'  }}
-      cover={<img alt={product.title} src={product.image} style={{maxHeight: '450px', minHeight: '450px' }} />}
+      cover={<img alt={product.name} src={product.imageURL} style={{maxHeight: '450px', minHeight: '450px' }} />}
     >
-      <Meta title={product.title} description={`$${product.price}`} />
+      <Meta title={product.name} description={`$${product.value}`} />
       <Button type="primary" style={{ marginTop: '10px', width: '100%' }} onClick={() => onAddToCart(product)}> 
         Adicionar ao Carrinho
       </Button>

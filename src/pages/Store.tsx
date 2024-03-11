@@ -12,7 +12,7 @@ const Store = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    Api.get('https://fakestoreapi.com/products/')
+    Api.get('http://localhost:3000/gameboards/')
       .then(res => setProducts(res.data))
       .catch(err => alert('Ocorreu um erro ao carregar os itens! ' + err));
   }, []); 
