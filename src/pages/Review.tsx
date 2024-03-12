@@ -50,7 +50,7 @@ export default function Review({ cartItens, itensAmount, cep, payment }) {
                     <List disablePadding>
                         {cartItens.map((item) => (
                             <ListItem className={classes.listItem} key={item.id}>
-                                <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+                                <img src={item.imageURL} alt={item.name} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
                                 <ListItemText primary={item.name} secondary={item.description} />
                                 <Typography variant="body2">{item.value}</Typography>
                             </ListItem>

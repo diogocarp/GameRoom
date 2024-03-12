@@ -4,6 +4,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 const RegisterGameBoard = () => {
     const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const RegisterGameBoard = () => {
 
     const onFinish = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/gameboards', gameboard);
+            const response = await axios.post('http://localhost:3000/gameboards', gameBoard);
             console.log(response)
             console.log('Dados do GameBoard:', gameBoard);
             alert('Cadastrado com sucesso!');
@@ -39,7 +40,6 @@ const RegisterGameBoard = () => {
         } catch (error) {
             alert('Erro ao enviar dados:' + error);
         }
-        
     };
 
     return (
@@ -77,7 +77,59 @@ const RegisterGameBoard = () => {
                             />
                         </Form.Item>
 
-                        {/* Adicione os outros campos do GameBoard aqui */}
+                        <Form.Item
+                            name="imageURL"
+                            rules={[{ required: true, message: 'Insira a url da imagem do jogo de tabuleiro' }]}
+                        >
+                            <Input
+
+                                placeholder="Imagem do jogo de tabuleiro"
+                                name="imageURL"
+                                value={gameBoard.imageURL}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+                        
+                        <Form.Item
+                            name="minJoga"
+                            rules={[{ required: true, message: 'Insira o minimo de jogadores' }]}
+                        >
+                            
+                            <Input
+                               type='number'
+                                placeholder="Minimo de players"
+                                name="minPlayers"
+                                value={gameBoard.minPlayers}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+                        
+                        <Form.Item
+                            name="maxJoga"
+                            rules={[{ required: true, message: 'Insira o maximo de jogadores' }]}
+                        >
+                            <Input
+                                type='number'
+                                placeholder="Maximo de players"
+                                name="maxPlayers"
+                                value={gameBoard.maxPlayers}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="description"
+                            rules={[{ required: true, message: 'Insira a descrição do jogo de tabuleiro' }]}
+                        >
+                            <Input.TextArea
+                                placeholder="Descrição do jogo de tabuleiro"
+                                name="description"
+                                value={gameBoard.description}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+
+
 
                         <Form.Item>
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
