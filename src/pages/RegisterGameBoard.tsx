@@ -43,8 +43,8 @@ const RegisterGameBoard = () => {
     };
 
     return (
-        <div className="container-fluid" style={{ maxWidth: '600px', margin: 'auto' }}>
-
+        
+            <div className="container-fluid" style={{ maxWidth: '1000px', minWidth: '300px', margin: 'auto' }}>
                 <div style={{ backgroundImage: 'url("https://i.pinimg.com/736x/ef/a0/27/efa027e810681894293ba2bf761c3a7e.jpg")', backgroundSize: 'auto', height: '200px', borderRadius: '50px 50px 0 0' }}></div>
                 <div style={{ height:'100%',    width: '100%'}}>
                     <Card title="Cadastro de GameBoard" style={{ borderRadius: '0 0 50px 50px', minHeight: '50vh' }}>
