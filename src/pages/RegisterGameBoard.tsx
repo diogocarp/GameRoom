@@ -43,7 +43,7 @@ const RegisterGameBoard = () => {
     };
 
     return (
-        
+            
             <div className="container-fluid" style={{ maxWidth: '1000px', minWidth: '300px', margin: 'auto' }}>
                 <div style={{ backgroundImage: 'url("https://i.pinimg.com/736x/ef/a0/27/efa027e810681894293ba2bf761c3a7e.jpg")', backgroundSize: 'auto', height: '200px', borderRadius: '50px 50px 0 0' }}></div>
                 <div style={{ height:'100%',    width: '100%'}}>
@@ -94,20 +94,20 @@ const RegisterGameBoard = () => {
                                 rules={[{ required: true, message: 'Insira o mínimo de jogadores' }]}
                             >
                                 <Input
-                                    type='number'
+                                    type='text'
                                     placeholder="Mínimo de players"
                                     name="minPlayers"
                                     value={gameBoard.minPlayers}
                                     onChange={handleChange}
                                 />
                             </Form.Item>
-    
+
                             <Form.Item
                                 name="maxJoga"
                                 rules={[{ required: true, message: 'Insira o máximo de jogadores' }]}
                             >
                                 <Input
-                                    type='number'
+                                    type='text'
                                     placeholder="Máximo de players"
                                     name="maxPlayers"
                                     value={gameBoard.maxPlayers}
