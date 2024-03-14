@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { EditOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import SecureLS from 'secure-ls';
+
 
 const Product = ({ product, onAddToCart }) => {
+  const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
+  const navigate = useNavigate();
+  const userData = JSON.parse(ls.get('userData'));
   const { Meta } = Card;
   const [flipped, setFlipped] = useState(false);
 
@@ -13,6 +19,11 @@ const Product = ({ product, onAddToCart }) => {
   const handleAddToCart = (e) => {
     e.stopPropagation(); 
     onAddToCart(product);
+  };
+
+  const handleEdit = (e) => {
+    e.stopPropagation(); 
+     navigate('/EditGameBoard');
   };
 
   return (
@@ -39,6 +50,25 @@ const Product = ({ product, onAddToCart }) => {
             title={<span style={{ color: 'black', fontWeight: 'bold' }}>{product.name}</span>}
             description={<span style={{ color: 'black', fontWeight: 'bold' }}>${product.value}</span>}
           />
+          {userData.type === 'admin' ? (
+            <div>
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<EditOutlined style={{ fontSize: '24px', color: 'black' }} />}
+                  style={{
+                    marginLeft:'5px',
+                    float:'right',
+                    width: '48px',
+                    height: '48px',
+                    padding: 0,
+                    backgroundColor: 'transparent',
+                    border: 'none'
+                  }}
+                  onClick={handleEdit}
+                />
+            </div>
+          ) : null}
           <div >
             <Button 
               type="primary" 
