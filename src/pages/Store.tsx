@@ -52,7 +52,6 @@ const Store = () => {
       value={searchTerm} 
       onChange={(e) => setSearchTerm(e.target.value)} 
     />
-    <i className="fa fa-search" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#aaa' }}></i>
   </div>
 </Row>
 
@@ -62,7 +61,9 @@ const Store = () => {
           
           {products.filter(filterProducts).map((product) => (
             <Col key={product.id} xs={24} sm={12} md={8} lg={6}>
+              <center>
               <Product product={product} onAddToCart={addToCart} />
+              </center>
             </Col>
           ))}
         </Row>

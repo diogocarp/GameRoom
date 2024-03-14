@@ -28,7 +28,7 @@ const Product = ({ product, onAddToCart }) => {
       }}
       onClick={handleFlip}
     >
-      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
+      <div style={{ width: '100%', height: '100%' }}>
         <div style={{ display: flipped ? 'none' : 'block', transform: flipped ? 'rotateY(180deg)' : 'rotateY(0)' }}>
          
           <div style={{ width: '250px', height: '250px', overflow: 'hidden' }}>
@@ -45,9 +45,7 @@ const Product = ({ product, onAddToCart }) => {
               shape="circle" 
               icon={<ShoppingCartOutlined style={{ fontSize: '24px' }} />} 
               style={{ 
-                position: 'absolute', 
-                bottom: '-20px', 
-                right: '54px',
+                float:'right',
                 width: '48px',
                 height: '48px', 
                 fontSize: '24px', 
