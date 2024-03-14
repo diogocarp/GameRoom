@@ -4,12 +4,14 @@ import Header from '../components/Header';
 import damasImage from '../assets/jogo-de-damas.png'
 import tabuleiroImage from '../assets/jogo-de-tabuleiro.png' ;
 import CFooter from '../components/Footer';
-
+import SecureLS from 'secure-ls';
+  
 
 const { Title, Paragraph } = Typography;
 
 const Home = () => {
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
+  const userData = JSON.parse(ls.get('userData'));
   console.log(userData.email)
 
   return (

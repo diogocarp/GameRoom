@@ -3,8 +3,10 @@ import { LockOutlined, MailOutlined, EyeOutlined, EyeFilled } from '@ant-design/
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import SecureLS from 'secure-ls';
 
 const Login = () => {
+    const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
     const navigate = useNavigate();
 
     const [user, setUser] = useState({
@@ -43,7 +45,7 @@ const Login = () => {
                 return
             }
             alert('Login feito com sucesso!');
-            localStorage.setItem('userData', JSON.stringify(userData))
+            ls.set('userData', JSON.stringify(userData))
             navigate('/home');
         } catch (error) {
             console.log(error);

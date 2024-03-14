@@ -4,10 +4,12 @@ import {  useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import '../css/headerStyle.css'; 
 import { GamepadOutlined } from '@material-ui/icons';
+import SecureLS from 'secure-ls';
 
 const Header = () => {
+  const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
   const [current, setCurrent] = useState('l');
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const userData = JSON.parse(ls.get('userData'));
 
 
 
@@ -43,7 +45,7 @@ const Header = () => {
 
         <Menu.Item key="/" icon={<ArrowRightOutlined style={{ fontSize: '24px' }} />} className="ml-auto-md">
           <Link to="/" onClick={()=>{
-            localStorage.removeItem('userData');
+            ls.remove('userData');
           }}>Sair</Link>
         </Menu.Item>
       </Menu>

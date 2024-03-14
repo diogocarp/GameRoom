@@ -38,7 +38,7 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
 
   return (
     <div>
-      <Button type="primary" onClick={showDrawer} style={{ float: 'right', marginTop: '30px',marginRight: '30px' }}>
+      <Button type="primary" onClick={showDrawer} style={{ float: 'right', marginTop: '2.5em',marginRight: '30px' }}>
         Abrir Carrinho
       </Button>
       <Drawer

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Table } from 'antd';
 import { Api } from '../api/Api';
 import Header from '../components/Header';
@@ -51,9 +51,8 @@ const UsersTable = () => {
       },
   ];
 
-  
     function deleteUser(idUser: number){
-        Api.delete('http://localhost:3000/users/'+idUser)
+      Api.delete('http://localhost:3000/users/'+idUser)
       .then(res => console.log(res))
       .catch(err => alert('Ocorreu um erro ao deletar usuário ' + err));
     }

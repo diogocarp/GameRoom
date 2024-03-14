@@ -55,7 +55,7 @@ export default function Checkout() {
 
 const location = useLocation();
 const { cartItems, itensAmount } = location.state;
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Endereço de entrega', 'Detalhes de pagamento', 'Revise seu pedido!'];
 const [cep, setCep] = useState({});
 const [payment, setPayment] = useState({});
 const [activeStep, setActiveStep] = useState(0);
@@ -91,7 +91,7 @@ function getStepContent() {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Checkout
+            Revisão de Pedido
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (

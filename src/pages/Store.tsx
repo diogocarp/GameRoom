@@ -31,20 +31,32 @@ const Store = () => {
 
   return (
     <>
-      <Header />
-      <Cart cartItems={cartItems} setCartItems={setCartItems}/>
-      <div style={{ padding: '20px' }}>
-        <h1 style={{ color: 'white' }}>Loja E-commerce</h1>
-            <div style={  {textAlign: 'right', paddingBottom: '20px'}}>
-            <input 
-        type="text" 
-        className="form-control"
-        style={{height: '25px' }}
-        placeholder="Pesquisar produtos..." 
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-    </div>
+  <Header />
+  <Cart cartItems={cartItems} setCartItems={setCartItems}/>
+  
+  <Row style={{ padding: '20px', alignItems: 'center', justifyContent: 'center' }}>
+  <h1 style={{ color: 'white', marginBottom: '10px', marginRight: 'auto' }}>Loja E-commerce</h1>
+  <div style={{ position: 'relative', display: 'inline-block' }}>
+    <input 
+      type="text" 
+      className="form-control" 
+      style={{ 
+        height: '40px', 
+        paddingLeft: '15px', 
+        borderRadius: '20px', 
+        border: '2px solid #ccc', 
+        fontSize: '16px', 
+        width: '300px' 
+      }} 
+      placeholder="Pesquisar produtos..." 
+      value={searchTerm} 
+      onChange={(e) => setSearchTerm(e.target.value)} 
+    />
+    <i className="fa fa-search" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#aaa' }}></i>
+  </div>
+</Row>
+
+
       
         <Row gutter={[16, 16]}>
           
@@ -54,7 +66,6 @@ const Store = () => {
             </Col>
           ))}
         </Row>
-      </div>
       <CFooter />
     </>
   );

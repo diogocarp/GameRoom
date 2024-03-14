@@ -2,11 +2,13 @@ import { Avatar, Card, Divider, Typography } from 'antd';
 import Header from '../components/Header';
 import CFooter from '../components/Footer';
 import AvatarImage from '../assets/avatarImage.png';
-
+import SecureLS from 'secure-ls';
 const { Title, Text } = Typography;
 
 const Profile = () => {
-  const userData = JSON.parse(localStorage.getItem('userData'));
+const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
+
+  const userData = JSON.parse(ls.get('userData'));
 
   return (
     <>

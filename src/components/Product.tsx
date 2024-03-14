@@ -11,7 +11,7 @@ const Product = ({ product, onAddToCart }) => {
   };
 
   const handleAddToCart = (e) => {
-    e.stopPropagation(); // Impede a propagação do evento para o elemento pai (o cartão)
+    e.stopPropagation(); 
     onAddToCart(product);
   };
 
@@ -50,17 +50,16 @@ const Product = ({ product, onAddToCart }) => {
                 right: '54px',
                 width: '48px',
                 height: '48px', 
-                fontSize: '24px', // Ajuste para alinhar o tamanho do ícone com o círculo
+                fontSize: '24px', 
               }} 
-              onClick={handleAddToCart} // Usando o novo handler
+              onClick={handleAddToCart} 
             />
           </div>
         </div>
-        <div style={{width: '100%', height: '100%', display: flipped ? 'block' : 'none', transform: flipped ? 'rotateY(180deg)' : 'rotateY(0)' , textAlign: 'center'}}>
-          {/* Back side of the card */}
-          <div style={{ }}>
+        <div style={{width: '80%', height: '100%', display: flipped ? 'block' : 'none', transform: flipped ? 'rotateY(180deg)' : 'rotateY(0)' , textAlign: 'center'}}>
+          <center>
             <p style={{ color: 'black', fontWeight: 'bold' }}>{product.description}</p>
-          </div>
+          </center>
         </div>
       </div>
     </Card>
