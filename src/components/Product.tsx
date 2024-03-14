@@ -58,6 +58,7 @@ const Product = ({ product, onAddToCart }) => {
           <center>
             <p style={{ color: 'black', fontWeight: 'bold' }}>{product.description}</p>
           </center>
+          
         </div>
       </div>
     </Card>

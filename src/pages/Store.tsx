@@ -64,6 +64,7 @@ const Store = () => {
               <center>
               <Product product={product} onAddToCart={addToCart} />
               </center>
+              <br/>
             </Col>
           ))}
         </Row>
