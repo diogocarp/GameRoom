@@ -7,7 +7,7 @@ import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
 import EditGameBoard from './pages/EditGameBoard';
-import RegisterGameBoard from './pages/EditGameBoard';
+import RegisterGameBoard from './pages/RegisterGameBoard';
 
 
 import UsersTable from './pages/UsersTable';
