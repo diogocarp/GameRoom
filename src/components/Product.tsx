@@ -58,7 +58,7 @@ const Product = ({ product, onAddToCart }) => {
                   icon={<EditOutlined style={{ fontSize: '24px', color: 'black' }} />}
                   style={{
                     marginLeft:'5px',
-                    float:'right',
+                    float:'left',
                     width: '48px',
                     height: '48px',
                     padding: 0,
