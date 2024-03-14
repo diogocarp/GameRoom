@@ -6,7 +6,10 @@ import Store from './pages/Store';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
-import RegisterGameBoard from './pages/RegisterGameBoard';
+import EditGameBoard from './pages/EditGameBoard';
+import RegisterGameBoard from './pages/EditGameBoard';
+
+
 import UsersTable from './pages/UsersTable';
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +23,7 @@ const router = createBrowserRouter(
     <Route path="/checkout" element={<Checkout />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/registerGameBoard" element={<RegisterGameBoard />} />
+    <Route path="/EditGameBoard" element={<EditGameBoard />} />
     <Route path="/usersTable" element={<UsersTable/>} />
     </>
   )
