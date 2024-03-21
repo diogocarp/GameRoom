@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import { Button, Spin, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import SecureLS from 'secure-ls';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -24,15 +26,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Review({ cartItens, itensAmount, cep, payment }) {
+
     const classes = useStyles();
     const generateOrder = Math.floor(Math.random() * 1000000)
     const [paymentSuccess, setPaymentSuccess] = useState(true);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const ls = new SecureLS({ encodingType: 'aes', isCompression: false });
+    const userData = JSON.parse(ls.get('userData'));
+    
 
+    console.log(payment.ccexp)
+
+    const [order, setOrder] = useState({
+
+        codOrder: `${generateOrder}`,
+        userCostumerId: userData._id,
+        products: cartItens.map((item) => (item._id)),
+        totalPrice: itensAmount,
+        nameCostumer: cep.firstName + ' ' + cep.lastName,
+        estado: cep.uf,
+        logradouro: cep.logradouro,
+        bairro: cep.bairro,
+        cardName: payment.ccname,
+        cardNumber: payment.ccnumber,
+        cvvCard: payment.cccvv,
+        expDate:payment.ccexp
+
+    });
 
     const handlePaymentSuccess = () => {
         setLoading(true)
+            try {
+                const response = axios.post('http://localhost:3000/payments', order);
+                console.log(response)
+            } catch (error) {
+                alert('Erro ao enviar dados:' + error);
+                return
+            }
+        
         setTimeout(() => {
           setLoading(false)
             setPaymentSuccess(false);

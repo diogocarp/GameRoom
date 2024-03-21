@@ -34,12 +34,18 @@ export default function Payment({cep, onNext}) {
         savePayment: false
       });
 
-  const currentYear = new Date().getFullYear();
+      const currentYear = new Date().getFullYear();
 
-  const futureYears = Array.from({ length: 10 }, (_, index) => currentYear + index);
-
-  const months = Array.from({ length: 12 }, (_, index) => index + 1);
-
+      const futureYears = Array.from({ length: 10 }, (_, index) => {
+          const year = currentYear + index;
+          return year.toString().slice(-2); 
+      });
+      
+      const months = Array.from({ length: 12 }, (_, index) => {
+          const month = index + 1;
+          return month < 10 ? '0' + month : month.toString(); 
+      });
+      
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

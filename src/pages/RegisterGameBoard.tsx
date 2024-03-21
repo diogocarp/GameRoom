@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Form, Input, Button } from 'antd';
+import { Card, Form, Input, Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';

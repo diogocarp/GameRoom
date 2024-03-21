@@ -33,10 +33,10 @@ const Header = () => {
         </Menu.Item>
         {userData.type === 'admin' ? (
         <div>
-        <Menu.Item key="g" icon={<GamepadOutlined style={{ fontSize: '24px' }} />} className="ml-auto-md">
+        <Menu.Item key="g" icon={<GamepadOutlined style={{ fontSize: '24px' }} />} >
           <Link to="/registerGameBoard">Cadastrar Jogo</Link>
         </Menu.Item>
-        <Menu.Item key="t" icon={<UserAddOutlined style={{ fontSize: '24px' }} />} className="ml-auto-md">
+        <Menu.Item key="t" icon={<UserAddOutlined style={{ fontSize: '24px' }} />} >
         <Link to="/usersTable">Usuários</Link>
       </Menu.Item>
       </div>
